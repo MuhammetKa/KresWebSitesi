@@ -1,21 +1,57 @@
 @page
 @model KresWebSitesi.Pages.Admin.UploadImageModel
 @{
-    ViewData["Title"] = "Fotoğraf Yükle";
+    ViewData["Title"] = "Fotoğraf Yönetimi";
 }
 
-<div class="container mt-5">
-    <h2>Galeriye Yeni Fotoğraf Ekle</h2>
-    <hr />
-    <form method="post" enctype="multipart/form-data" class="col-md-6">
-        <div class="mb-3">
-            <label class="form-label">Fotoğraf Seç</label>
-            <input type="file" asp-for="Upload" class="form-control" accept="image/*" />
-        </div>
-        <div class="mb-3">
-            <label class="form-label">Açıklama</label>
-            <input type="text" asp-for="Description" class="form-control" placeholder="Örn: Oyun odamız" />
-        </div>
-        <button type="submit" class="btn btn-primary">Yükle</button>
-    </form>
+<div class="container mt-4">
+    <h2 class="text-primary mb-4">Yönetim Paneli</h2>
+    
+    <div class="card shadow-sm p-4 mb-5 border-0 bg-light">
+        <h5 class="mb-3">Yeni Fotoğraf Ekle</h5>
+        <form method="post" enctype="multipart/form-data" class="row align-items-end">
+            <div class="col-md-5 mb-3 mb-md-0">
+                <label class="form-label text-muted small fw-bold">Fotoğraf Seç</label>
+                <input type="file" asp-for="Upload" class="form-control" accept="image/*" required />
+            </div>
+            <div class="col-md-5 mb-3 mb-md-0">
+                <label class="form-label text-muted small fw-bold">Açıklama (İsteğe Bağlı)</label>
+                <input type="text" asp-for="Description" class="form-control" placeholder="Örn: Oyun zamanı..." />
+            </div>
+            <div class="col-md-2">
+                <button type="submit" class="btn btn-success w-100">Yükle</button>
+            </div>
+        </form>
+    </div>
+
+    <h5 class="mb-3 text-secondary">Sistemdeki Fotoğraflar</h5>
+    <div class="row">
+        @if (Model.Images != null && Model.Images.Any())
+        {
+            foreach (var item in Model.Images)
+            {
+                <div class="col-md-3 mb-4">
+                    <div class="card h-100 shadow-sm border-0">
+                        <img src="@item.ImagePath" class="card-img-top rounded-top" style="height: 140px; object-fit: cover;">
+                        <div class="card-body p-2 text-center bg-white">
+                            <p class="small text-muted mb-2 text-truncate" title="@item.Description">
+                                @(string.IsNullOrEmpty(item.Description) ? "Açıklama yok" : item.Description)
+                            </p>
+                            
+                            <form method="post" asp-page-handler="Delete" asp-route-id="@item.Id" 
+                                  onsubmit="return confirm('Bu fotoğrafı tamamen silmek istediğinize emin misiniz?');">
+                                <button type="submit" class="btn btn-outline-danger btn-sm w-100">🗑️ Sil</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <div class="col-12 text-muted fst-italic">
+                Henüz yüklenmiş bir fotoğraf bulunmuyor.
+            </div>
+        }
+    </div>
 </div>
