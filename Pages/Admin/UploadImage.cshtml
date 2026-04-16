@@ -1,0 +1,21 @@
+@page
+@model KresWebSitesi.Pages.Admin.UploadImageModel
+@{
+    ViewData["Title"] = "Fotoğraf Yükle";
+}
+
+<div class="container mt-5">
+    <h2>Galeriye Yeni Fotoğraf Ekle</h2>
+    <hr />
+    <form method="post" enctype="multipart/form-data" class="col-md-6">
+        <div class="mb-3">
+            <label class="form-label">Fotoğraf Seç</label>
+            <input type="file" asp-for="Upload" class="form-control" accept="image/*" />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Açıklama</label>
+            <input type="text" asp-for="Description" class="form-control" placeholder="Örn: Oyun odamız" />
+        </div>
+        <button type="submit" class="btn btn-primary">Yükle</button>
+    </form>
+</div>
