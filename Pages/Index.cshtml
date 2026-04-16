@@ -4,30 +4,31 @@
     ViewData["Title"] = "Ana Sayfa";
 }
 
-<div class="text-center mt-5">
-    <h1 class="display-4 text-primary" style="font-weight: 600;">Minik Adımlar Kreşine Hoş Geldiniz</h1>
-    <p class="lead mt-3">Çocuklarınız için güvenli, eğlenceli ve öğretici bir yuva.</p>
+<div id="anasayfa" class="container-fluid pt-5 pb-5 mb-5" style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); border-radius: 0 0 50px 50px;">
+    <div class="container text-center py-5">
+        <h1 class="display-3" style="font-weight: 800; color: #2c3e50;">Minik Adımlar Kreşine<br><span style="color: #ff6b6b;">Hoş Geldiniz!</span> 🎈</h1>
+        <p class="lead mt-4 text-dark fw-bold">Çocuklarınız için güvenli, eğlenceli ve öğretici bir yuva.</p>
+        <a href="#iletisim" class="btn btn-warning btn-lg mt-3 fw-bold rounded-pill shadow-sm px-4 py-2">Bize Katılın</a>
+    </div>
 </div>
 
-<hr class="my-5" style="opacity: 0.1;" />
-
-<div class="container">
-    <h2 class="text-center mb-4" style="color: #5a5a5a;">Fotoğraf Galerimiz</h2>
+<div id="galeri" class="container py-5">
+    <div class="text-center mb-5">
+        <h2 class="section-title">Fotoğraf Galerimiz</h2>
+    </div>
     
     <div class="row">
         @if (Model.GalleryImages != null && Model.GalleryImages.Any())
         {
-            // Veritabanından gelen her bir fotoğraf için bir kart oluşturuyoruz
             foreach (var item in Model.GalleryImages)
             {
                 <div class="col-md-4 mb-4">
-                    <div class="card h-100 shadow-sm border-0">
-                        <img src="@item.ImagePath" class="card-img-top rounded" alt="Kreş Fotoğrafı" style="height: 250px; object-fit: cover;">
-                        
+                    <div class="card h-100 shadow border-0" style="border-radius: 20px; overflow: hidden; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
+                        <img src="@item.ImagePath" class="card-img-top" alt="Kreş Fotoğrafı" style="height: 250px; object-fit: cover;">
                         @if (!string.IsNullOrEmpty(item.Description))
                         {
-                            <div class="card-body py-2 text-center bg-light rounded-bottom">
-                                <p class="card-text text-muted small mb-0">@item.Description</p>
+                            <div class="card-body py-3 text-center" style="background-color: #fff9e6;">
+                                <p class="card-text fw-bold" style="color: #5a5a5a;">@item.Description</p>
                             </div>
                         }
                     </div>
@@ -40,5 +41,52 @@
                 <p>Yakında burası cıvıl cıvıl fotoğraflarla dolacak! 🎨</p>
             </div>
         }
+    </div>
+</div>
+
+<div id="hakkimizda" class="container-fluid py-5 mt-5" style="background-color: #e0f7fa;">
+    <div class="container py-4">
+        <div class="text-center mb-5">
+            <h2 class="section-title">Biz Kimiz?</h2>
+        </div>
+        <div class="row align-items-center">
+            <div class="col-md-6 mb-4 mb-md-0">
+                <div class="bg-white p-5 shadow-sm" style="border-radius: 30px;">
+                    <h4 class="text-info fw-bold mb-3">Sevgiyle Büyütüyoruz 🌱</h4>
+                    <p class="lead" style="color: #555;">Minik Adımlar Kreşi olarak, çocukların hayal gücünü besleyen, güvenli ve sevgi dolu bir ortam sunmayı amaçlıyoruz.</p>
+                    <p style="color: #777;">Deneyimli eğitmen kadromuzla, çocuklarımızın hem zihinsel hem de fiziksel gelişimlerini destekleyecek modern eğitim yöntemleri kullanıyoruz. Onların gülümsemesi bizim en büyük motivasyonumuz.</p>
+                </div>
+            </div>
+            <div class="col-md-6 text-center">
+                <div style="font-size: 8rem; text-shadow: 2px 2px 10px rgba(0,0,0,0.1);">🧸 🎨 🧩</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="iletisim" class="container py-5 mt-5 mb-5">
+    <div class="text-center mb-5">
+        <h2 class="section-title">Bize Ulaşın</h2>
+    </div>
+    <div class="row">
+        <div class="col-md-5 mb-4 mb-md-0">
+            <div class="card border-0 shadow p-4 h-100" style="border-radius: 30px; background-color: #fff0f5;">
+                <div class="card-body">
+                    <h5 class="fw-bold text-danger">📍 Adresimiz</h5>
+                    <p>Güneşli Mahallesi, Çiçek Sokak No:14<br />Merkez / Kütahya</p>
+                    
+                    <h5 class="fw-bold text-danger mt-4">📞 Telefon</h5>
+                    <p>+90 555 123 45 67</p>
+
+                    <h5 class="fw-bold text-danger mt-4">✉️ E-Posta</h5>
+                    <p>bilgi@minikadimlar.com</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-7">
+            <div class="shadow h-100 w-100 overflow-hidden" style="border-radius: 30px; min-height: 300px;">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d198305.80789721733!2d29.832961501464673!3d39.42426868952402!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14c94cdb5b9abeb7%3A0x633513a8902893f1!2zS8O8dGFoeWE!5e0!3m2!1str!2str!4v1700000000000!5m2!1str!2str" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
     </div>
 </div>

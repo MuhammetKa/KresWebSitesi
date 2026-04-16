@@ -14,6 +14,14 @@
 </head>
 <body>
     <header>
+        <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
+        <style>
+            html { scroll-behavior: smooth; }
+            body { font-family: 'Nunito', sans-serif; background-color: #fdfbf7; } /* Sıcak, krem bir arka plan */
+            .navbar { background-color: #ffffff; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+            .section-title { font-weight: 800; color: #ff6b6b; position: relative; display: inline-block; }
+            .section-title::after { content: ''; position: absolute; width: 50%; height: 4px; background: #feca57; bottom: -10px; left: 25%; border-radius: 2px; }
+        </style>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
                 <a class="navbar-brand" asp-area="" asp-page="/Index" style="font-weight: bold; color: #ff6b6b;">Minik Adımlar</a>
@@ -24,15 +32,18 @@
                 </button>
                 
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
+                    <ul class="navbar-nav flex-grow-1 justify-content-center">
                         <li class="nav-item">
-                            <a class="nav-link @(currentPage == "/Index" ? "text-primary fw-bold" : "text-dark")" asp-area="" asp-page="/Index">Ana Sayfa</a>
+                            <a class="nav-link text-dark fw-bold px-3" href="/#anasayfa">Ana Sayfa</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link @(currentPage == "/Hakkimizda" ? "text-primary fw-bold" : "text-dark")" asp-area="" asp-page="/Hakkimizda">Hakkımızda</a>
+                            <a class="nav-link text-dark fw-bold px-3" href="/#galeri">Galeri</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link @(currentPage == "/Iletisim" ? "text-primary fw-bold" : "text-dark")" asp-area="" asp-page="/Iletisim">İletişim</a>
+                            <a class="nav-link text-dark fw-bold px-3" href="/#hakkimizda">Hakkımızda</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark fw-bold px-3" href="/#iletisim">İletişim</a>
                         </li>
                     </ul>
                     
