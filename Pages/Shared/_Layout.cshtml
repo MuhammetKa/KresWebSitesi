@@ -1,5 +1,8 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
+@{
+    var currentPage = ViewContext.RouteData.Values[key: "page"]?.ToString();
+}
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -23,13 +26,13 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Ana Sayfa</a>
+                            <a class="nav-link @(currentPage == "/Index" ? "text-primary fw-bold" : "text-dark")" asp-area="" asp-page="/Index">Ana Sayfa</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Hakkimizda">Hakkımızda</a>
+                            <a class="nav-link @(currentPage == "/Hakkimizda" ? "text-primary fw-bold" : "text-dark")" asp-area="" asp-page="/Hakkimizda">Hakkımızda</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Iletisim">İletişim</a>
+                            <a class="nav-link @(currentPage == "/Iletisim" ? "text-primary fw-bold" : "text-dark")" asp-area="" asp-page="/Iletisim">İletişim</a>
                         </li>
                     </ul>
                     
