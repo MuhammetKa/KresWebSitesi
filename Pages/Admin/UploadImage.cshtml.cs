@@ -39,8 +39,18 @@ public class UploadImageModel : PageModel
         if (Upload == null || Upload.Length == 0) return RedirectToPage();
 
         var fileName = Guid.NewGuid().ToString() + Path.GetExtension(Upload.FileName);
-        var filePath = Path.Combine(_environment.WebRootPath, "uploads/gallery", fileName);
+        
+        // Klasör yolunu belirle
+        var folderPath = Path.Combine(_environment.WebRootPath, "uploads", "gallery");
+        var filePath = Path.Combine(folderPath, fileName);
 
+        // EĞER KLASÖR YOKSA OTOMATİK OLUŞTUR (İşte hayat kurtaran kısım)
+        if (!Directory.Exists(folderPath))
+        {
+            Directory.CreateDirectory(folderPath);
+        }
+
+        // Dosyayı kaydet
         using (var stream = new FileStream(filePath, FileMode.Create))
         {
             await Upload.CopyToAsync(stream);
@@ -53,7 +63,7 @@ public class UploadImageModel : PageModel
         });
 
         await _context.SaveChangesAsync();
-        return RedirectToPage(); // İşlem bitince aynı sayfayı yenile
+        return RedirectToPage();
     }
 
     // --- YENİ EKLENEN SİLME METODU ---
