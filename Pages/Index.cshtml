@@ -4,7 +4,7 @@
     ViewData["Title"] = "Ana Sayfa";
 }
 
-<div id="anasayfa" class="container-fluid pt-5 pb-5 mb-5" style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); border-radius: 0 0 50px 50px;">
+<div id="anasayfa" class="container-fluid py-5" style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);">
     <div class="container text-center py-5" data-aos="zoom-in">
         <h1 class="display-3" style="font-weight: 800; color: #2c3e50;">Minik Adımlar Kreşine<br><span style="color: #ff6b6b;">Hoş Geldiniz!</span> 🎈</h1>
         <p class="lead mt-4 text-dark fw-bold" data-aos="fade-up" data-aos-delay="200">Çocuklarınız için güvenli, eğlenceli ve öğretici bir yuva.</p>
@@ -12,41 +12,43 @@
     </div>
 </div>
 
-<div id="galeri" class="container py-5">
-    <div class="text-center mb-5" data-aos="fade-down">
-        <h2 class="section-title">Fotoğraf Galerimiz</h2>
-    </div>
-    
-    <div class="row">
-        @if (Model.GalleryImages != null && Model.GalleryImages.Any())
-        {
-            var delay = 0;
-            foreach (var item in Model.GalleryImages)
+<div id="galeri" class="container-fluid py-5" style="background-color: #ffffff;">
+    <div class="container">
+        <div class="text-center mb-5" data-aos="fade-down">
+            <h2 class="section-title">Fotoğraf Galerimiz</h2>
+        </div>
+        
+        <div class="row">
+            @if (Model.GalleryImages != null && Model.GalleryImages.Any())
             {
-                <div class="col-md-4 mb-4" data-aos="flip-left" data-aos-delay="@delay">
-                    <div class="card h-100 shadow border-0" style="border-radius: 20px; overflow: hidden; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.05) rotate(2deg)'" onmouseout="this.style.transform='scale(1) rotate(0deg)'">
-                        <img src="@item.ImagePath" class="card-img-top" alt="Kreş Fotoğrafı" style="height: 250px; object-fit: cover;">
-                        @if (!string.IsNullOrEmpty(item.Description))
-                        {
-                            <div class="card-body py-3 text-center" style="background-color: #fff9e6;">
-                                <p class="card-text fw-bold" style="color: #5a5a5a;">@item.Description</p>
-                            </div>
-                        }
+                var delay = 0;
+                foreach (var item in Model.GalleryImages)
+                {
+                    <div class="col-md-4 mb-4" data-aos="flip-left" data-aos-delay="@delay">
+                        <div class="card h-100 shadow border-0" style="border-radius: 20px; overflow: hidden; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.05) rotate(2deg)'" onmouseout="this.style.transform='scale(1) rotate(0deg)'">
+                            <img src="@item.ImagePath" class="card-img-top" alt="Kreş Fotoğrafı" style="height: 250px; object-fit: cover;">
+                            @if (!string.IsNullOrEmpty(item.Description))
+                            {
+                                <div class="card-body py-3 text-center" style="background-color: #fff9e6;">
+                                    <p class="card-text fw-bold" style="color: #5a5a5a;">@item.Description</p>
+                                </div>
+                            }
+                        </div>
                     </div>
-                </div>
-                delay += 100; // Her kart bir öncekinden 100ms sonra ekrana gelsin (Şelale efekti)
+                    delay += 100;
+                }
             }
-        }
-        else
-        {
-            <div class="col-12 text-center text-muted" data-aos="zoom-in">
-                <p>Yakında burası cıvıl cıvıl fotoğraflarla dolacak! 🎨</p>
-            </div>
-        }
+            else
+            {
+                <div class="col-12 text-center text-muted" data-aos="zoom-in">
+                    <p>Yakında burası cıvıl cıvıl fotoğraflarla dolacak! 🎨</p>
+                </div>
+            }
+        </div>
     </div>
 </div>
 
-<div id="hakkimizda" class="container-fluid py-5 mt-5" style="background-color: #e0f7fa;">
+<div id="hakkimizda" class="container-fluid py-5" style="background-color: #e0f7fa;">
     <div class="container py-4">
         <div class="text-center mb-5" data-aos="fade-down">
             <h2 class="section-title">Biz Kimiz?</h2>
@@ -69,26 +71,27 @@
     </div>
 </div>
 
-<div id="iletisim" class="container py-5 mt-5 mb-5">
-    <div class="text-center mb-5" data-aos="zoom-in">
-        <h2 class="section-title">Bize Ulaşın</h2>
-    </div>
-    <div class="row">
-        <div class="col-md-5 mb-4 mb-md-0" data-aos="fade-right">
-            <div class="card border-0 shadow p-4 h-100" style="border-radius: 30px; background-color: #fff0f5;">
-                <div class="card-body">
-                    <h5 class="fw-bold text-danger">📍 Adresimiz</h5>
-                    <p>Güneşli Mahallesi, Çiçek Sokak No:14<br />Merkez / Kütahya</p>
-                    <h5 class="fw-bold text-danger mt-4">📞 Telefon</h5>
-                    <p>+90 555 123 45 67</p>
-                    <h5 class="fw-bold text-danger mt-4">✉️ E-Posta</h5>
-                    <p>bilgi@minikadimlar.com</p>
+<div id="iletisim" class="container-fluid py-5" style="background-color: #fff0f5;"> <div class="container">
+        <div class="text-center mb-5" data-aos="zoom-in">
+            <h2 class="section-title">Bize Ulaşın</h2>
+        </div>
+        <div class="row">
+            <div class="col-md-5 mb-4 mb-md-0" data-aos="fade-right">
+                <div class="card border-0 shadow p-4 h-100" style="border-radius: 30px; background-color: #ffffff;">
+                    <div class="card-body">
+                        <h5 class="fw-bold text-danger">📍 Adresimiz</h5>
+                        <p>Güneşli Mahallesi, Çiçek Sokak No:14<br />Merkez / Kütahya</p>
+                        <h5 class="fw-bold text-danger mt-4">📞 Telefon</h5>
+                        <p>+90 555 123 45 67</p>
+                        <h5 class="fw-bold text-danger mt-4">✉️ E-Posta</h5>
+                        <p>bilgi@minikadimlar.com</p>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col-md-7" data-aos="fade-left" data-aos-delay="200">
-            <div class="shadow h-100 w-100 overflow-hidden" style="border-radius: 30px; min-height: 300px;">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d198305.80789721733!2d29.832961501464673!3d39.42426868952402!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14c94cdb5b9abeb7%3A0x633513a8902893f1!2zS8O8dGFoeWE!5e0!3m2!1str!2str!4v1700000000000!5m2!1str!2str" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <div class="col-md-7" data-aos="fade-left" data-aos-delay="200">
+                <div class="shadow h-100 w-100 overflow-hidden" style="border-radius: 30px; min-height: 300px;">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d198305.80789721733!2d29.832961501464673!3d39.42426868952402!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14c94cdb5b9abeb7%3A0x633513a8902893f1!2zS8O8dGFoeWE!5e0!3m2!1str!2str!4v1700000000000!5m2!1str!2str" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
             </div>
         </div>
     </div>
