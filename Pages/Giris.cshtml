@@ -1,0 +1,29 @@
+﻿@page
+@model KresWebSitesi.Pages.GirisModel
+@{
+    ViewData["Title"] = "Giriş";
+}
+
+<div class="container mt-5 pt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-5 text-center">
+            <div class="card border-0 shadow-lg p-5" style="border-radius: 40px; background: linear-gradient(135deg, #ffffff 0%, #f9f9f9 100%);">
+                <div class="mb-4" style="font-size: 4rem;">🔑</div>
+                <h2 class="fw-bold mb-4">Giriş Yap</h2>
+                <p class="text-muted mb-5">Minik Adımlar dünyasına hoş geldiniz. Lütfen devam etmek için giriş yapın.</p>
+                
+                <div class="d-grid gap-3">
+                    <button class="btn btn-light btn-lg border rounded-pill text-muted shadow-sm" disabled>
+                        👨‍👩‍👧 Veli Girişi (Yakında)
+                    </button>
+                    
+                    <hr class="my-3" />
+                    
+                    <a asp-page="/Admin/Login" class="btn btn-outline-secondary rounded-pill">
+                        ⚙️ Yönetici Girişi
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

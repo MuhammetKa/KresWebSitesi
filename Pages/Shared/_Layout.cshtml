@@ -48,9 +48,27 @@
                     </ul>
                     
                     <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link text-muted" asp-area="" asp-page="/Admin/UploadImage"><small>⚙️ Fotoğraf Yükle</small></a>
-                        </li>
+                        @if (User.Identity?.IsAuthenticated == true)
+                        {
+                            <li class="nav-item dropdown">
+                                <a class="btn btn-outline-primary rounded-pill px-4 dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    👋 Merhaba, Admin
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end border-0 shadow" aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" asp-page="/Admin/UploadImage">📸 Fotoğraf Yönetimi</a></li>
+                                    <li><hr class="dropdown-item-divider"></li>
+                                    <li>
+                                        <a class="dropdown-item text-danger" asp-page="/Admin/Login" asp-page-handler="Logout">Çıkış Yap</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="btn btn-primary rounded-pill px-4 shadow-sm" asp-page="/Giris">Giriş Yap</a>
+                            </li>
+                        }
                     </ul>
                 </div>
             </div>

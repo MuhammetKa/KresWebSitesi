@@ -1,8 +1,8 @@
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Security.Claims;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace KresWebSitesi.Pages.Admin;
 
@@ -15,17 +15,29 @@ public class LoginModel : PageModel
     [BindProperty] public string Password { get; set; } = string.Empty;
     public string Message { get; set; } = string.Empty;
 
+    public void OnGet() { }
+
+    // Çıkış Yapma İşlemi
+    public async Task<IActionResult> OnGetLogoutAsync()
+    {
+        await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+        return RedirectToPage("/Index");
+    }
+
     public async Task<IActionResult> OnPostAsync()
     {
         var adminUser = _configuration.GetSection("AdminUser");
         if (Username == adminUser["Username"] && Password == adminUser["Password"])
         {
-            var claims = new List<Claim> { new Claim(ClaimTypes.Name, Username) };
+            var claims = new List<Claim> { 
+                new Claim(ClaimTypes.Name, Username),
+                new Claim(ClaimTypes.Role, "Admin")
+            };
             var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));
             return RedirectToPage("/Admin/UploadImage");
         }
-        Message = "Geçersiz kullanıcı adı veya şifre!";
+        Message = "Hatalı yönetici bilgileri!";
         return Page();
     }
 }
